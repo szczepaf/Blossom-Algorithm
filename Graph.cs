@@ -49,28 +49,30 @@ namespace Blossom_Algorithm
 
         }
 
-        public Graph ParseGraph(string inputGraph, string name)
+        public Graph ParseGraph(string inputGraph)
         {
-            Graph graph = new Graph(name);
 
             string[] data = inputGraph.Split('\n');
             int verticesCount = int.Parse(data[0]);
-            string[] edgeData = data.Skip(0).ToArray();
+            string[] edgeData = data.Skip(1).ToArray();
 
             for (int i = 0; i < verticesCount; i++)
             {
-                graph.nodes.Add(new Node(i));
+                this.nodes.Add(new Node(i));
             }
 
             foreach (string edgeInput in edgeData)
             {
-                Edge newEdge = ParseEdge(edgeInput);
-                graph.edges.Add(newEdge);
-                newEdge.u.neigbours.Add(newEdge.v);
-                newEdge.v.neigbours.Add(newEdge.u);
+                if (!String.IsNullOrWhiteSpace(edgeInput))
+                {
+                    Edge newEdge = ParseEdge(edgeInput);
+                    this.edges.Add(newEdge);
+                    newEdge.u.neigbours.Add(newEdge.v);
+                    newEdge.v.neigbours.Add(newEdge.u);
+                }
             }
 
-            return graph;
+            return this;
         }
 
         //Debugging tools for printing out the graph:
