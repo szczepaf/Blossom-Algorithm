@@ -33,9 +33,9 @@ namespace Blossom_Algorithm
         //One Edge will be in the format: (onevertex,secondvertex)
         //eg: <2,3>
         //The whole graph will in the format: Number of vertices: Edges seperated by newlines
-        //eg: 3: <1,2>\n<0,2>\n
+        //eg: 3\n<1,2>\n<0,2>\n
         //Indices of Vertices (Nodes) are 0-based
-        //Example for K4: 4: <0,1>\n<0,2>\n<0,3>\n<1,2>\n<1,3>\n<2,3>\n
+        //Example for K4: 4\n<0,1>\n<0,2>\n<0,3>\n<1,2>\n<1,3>\n<2,3>\n
         public Edge ParseEdge(string edgeString)
         {
             edgeString = edgeString.Replace("<", "");
@@ -53,9 +53,9 @@ namespace Blossom_Algorithm
         {
             Graph graph = new Graph(name);
 
-            string[] data = inputGraph.Split(' ');
-            int verticesCount = int.Parse(data[0].Replace(":", ""));
-            string[] edgeData = data[1].Split('\n');
+            string[] data = inputGraph.Split('\n');
+            int verticesCount = int.Parse(data[0]);
+            string[] edgeData = data.Skip(0).ToArray();
 
             for (int i = 0; i < verticesCount; i++)
             {
