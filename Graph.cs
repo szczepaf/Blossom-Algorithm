@@ -54,21 +54,25 @@ namespace Blossom_Algorithm
 
             string[] data = inputGraph.Split('\n');
             int verticesCount = int.Parse(data[0]);
-            string[] edgeData = data.Skip(1).ToArray();
 
             for (int i = 0; i < verticesCount; i++)
             {
                 this.nodes.Add(new Node(i));
             }
 
-            foreach (string edgeInput in edgeData)
+            if (data.Length > 1)
             {
-                if (!String.IsNullOrWhiteSpace(edgeInput))
+                string[] edgeData = data.Skip(1).ToArray();           
+
+                foreach (string edgeInput in edgeData)
                 {
-                    Edge newEdge = ParseEdge(edgeInput);
-                    this.edges.Add(newEdge);
-                    newEdge.u.neigbours.Add(newEdge.v);
-                    newEdge.v.neigbours.Add(newEdge.u);
+                    if (!String.IsNullOrWhiteSpace(edgeInput))
+                    {
+                        Edge newEdge = ParseEdge(edgeInput);
+                        this.edges.Add(newEdge);
+                        newEdge.u.neigbours.Add(newEdge.v);
+                        newEdge.v.neigbours.Add(newEdge.u);
+                    }
                 }
             }
 
@@ -88,6 +92,12 @@ namespace Blossom_Algorithm
 
             return graphInfo;
 
+        }
+
+        public void Clear()
+        {
+            nodes.Clear();
+            edges.Clear();
         }
     }
 }
