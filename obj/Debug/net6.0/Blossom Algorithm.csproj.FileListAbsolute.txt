@@ -1,0 +1,15 @@
+C:\Users\42073\Desktop\c#\Blossom Algorithm\bin\Debug\net6.0\Blossom Algorithm.exe
+C:\Users\42073\Desktop\c#\Blossom Algorithm\bin\Debug\net6.0\Blossom Algorithm.deps.json
+C:\Users\42073\Desktop\c#\Blossom Algorithm\bin\Debug\net6.0\Blossom Algorithm.runtimeconfig.json
+C:\Users\42073\Desktop\c#\Blossom Algorithm\bin\Debug\net6.0\Blossom Algorithm.dll
+C:\Users\42073\Desktop\c#\Blossom Algorithm\bin\Debug\net6.0\ref\Blossom Algorithm.dll
+C:\Users\42073\Desktop\c#\Blossom Algorithm\bin\Debug\net6.0\Blossom Algorithm.pdb
+C:\Users\42073\Desktop\c#\Blossom Algorithm\obj\Debug\net6.0\Blossom Algorithm.csproj.AssemblyReference.cache
+C:\Users\42073\Desktop\c#\Blossom Algorithm\obj\Debug\net6.0\Blossom Algorithm.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\42073\Desktop\c#\Blossom Algorithm\obj\Debug\net6.0\Blossom Algorithm.AssemblyInfoInputs.cache
+C:\Users\42073\Desktop\c#\Blossom Algorithm\obj\Debug\net6.0\Blossom Algorithm.AssemblyInfo.cs
+C:\Users\42073\Desktop\c#\Blossom Algorithm\obj\Debug\net6.0\Blossom Algorithm.csproj.CoreCompileInputs.cache
+C:\Users\42073\Desktop\c#\Blossom Algorithm\obj\Debug\net6.0\Blossom Algorithm.dll
+C:\Users\42073\Desktop\c#\Blossom Algorithm\obj\Debug\net6.0\ref\Blossom Algorithm.dll
+C:\Users\42073\Desktop\c#\Blossom Algorithm\obj\Debug\net6.0\Blossom Algorithm.pdb
+C:\Users\42073\Desktop\c#\Blossom Algorithm\obj\Debug\net6.0\Blossom Algorithm.genruntimeconfig.cache
