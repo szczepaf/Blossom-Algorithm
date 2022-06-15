@@ -27,9 +27,26 @@ namespace Blossom_Algorithm
             edges.Add(edge);
             edgeSet.Add(edge);
         }
+
+        public static bool EdgesHaveNoCommonVertex(Edge one, Edge two) //TODO test
+        {
+            if (one.u == two.u || one.u == two.v || one.v == two.u || one.v == two.v) return false;
+            return true;
+        }
         public bool MatchingIsValid() //TODO
         {
-            return false;
+            bool matchingIsValid = true;
+
+            foreach (Edge edge in edges)
+            {
+                foreach (Edge edgeI in edges)
+                {
+                    if (edge != edgeI && !EdgesHaveNoCommonVertex(edge, edgeI)) matchingIsValid = false;
+                }
+
+            }
+
+            return matchingIsValid;
         }
 
         public bool PathIsAugmenting(List<Edge> path) //TODO write tests with assert - FINISH
@@ -51,5 +68,16 @@ namespace Blossom_Algorithm
 
 
         }
+    
+        public void FindAugmentingPath(Graph g)
+        {
+            //TODO
+        }
+
+        public void ImproveWithAugmentingPath(Graph g)
+        {
+            //TODO
+        }
     }
+
 }
