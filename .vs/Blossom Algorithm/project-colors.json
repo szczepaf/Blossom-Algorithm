@@ -5,6 +5,11 @@
       "ProjectGuid": "680c7b1c-1d43-4b3c-9bca-7b2f9581be41",
       "DisplayName": "Blossom Algorithm",
       "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
     }
   },
   "NextColorIndex": 1
