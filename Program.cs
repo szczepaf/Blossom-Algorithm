@@ -15,7 +15,7 @@ namespace Blossom_Algorithm
             string c5 = System.IO.File.ReadAllText(@"TestData\C5.txt");
             string blossom = System.IO.File.ReadAllText(@"TestData\Blossom.txt");
 
-            Graph graph = new Graph("test");
+            Graph graph = new Graph("testing Graph");
             graph.ParseGraph(emptyGraph);
             Console.WriteLine(graph.ToString());
             graph.Clear();

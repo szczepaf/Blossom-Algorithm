@@ -9,17 +9,17 @@ namespace Blossom_Algorithm
     class Node
     {
         public int id;         //Will be useful when debugging. Starts from 0.
-                               //Regular vertices will have positive ids, contracted vertices will have negative ids;
+                               //Regular vertices will have positive ids, contracted vertices will have negative ids.
         public int height;
-        public Node? successor;
+        public Node? successor; //Successor in the tree structure of the matching. Roots have themselves as successors.
         public List<Node> neigbours;
 
         
         public Node(int id)
         {
-            height = -1;
-            successor = null;
-            neigbours = new List<Node>();
+            this.height = -1;
+            this.successor = null;
+            this.neigbours = new List<Node>();
             this.id = id;
 
         }

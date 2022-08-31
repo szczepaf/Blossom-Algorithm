@@ -29,15 +29,20 @@ namespace Blossom_Algorithm
 
         }
 
-        //INPUT FORMAT:
-        //One Edge will be in the format: (onevertex,secondvertex)
-        //eg: <2,3>
-        //The whole graph will in the format: Number of vertices: Edges seperated by newlines
-        //eg: 3\n<1,2>\n<0,2>\n
-        //Indices of Vertices (Nodes) are 0-based
-        //Example for K4: 4\n<0,1>\n<0,2>\n<0,3>\n<1,2>\n<1,3>\n<2,3>\n
+       
+
         public Edge ParseEdge(string edgeString)
         {
+            //INPUT FORMAT:
+            //One Edge will be in the format: <onevertex,secondvertex>
+            //eg: <2,3>
+            //The whole graph will in the format: Number of vertices: Edges seperated by newlines
+            //eg: 3\n<1,2>\n<0,2>\n
+            //Indices of Vertices (Nodes) are 0-based
+            //For example, the complete graph with 4 vertices, K4, would look like this:
+            //4\n<0,1>\n<0,2>\n<0,3>\n<1,2>\n<1,3>\n<2,3>\n
+
+
             edgeString = edgeString.Replace("<", "");
             edgeString = edgeString.Replace(">", "");
 
@@ -49,10 +54,10 @@ namespace Blossom_Algorithm
 
         }
 
-        public Graph ParseGraph(string inputGraph)
+        public Graph ParseGraph(string graphAsString)
         {
 
-            string[] data = inputGraph.Split('\n');
+            string[] data = graphAsString.Split('\n');
             int verticesCount = int.Parse(data[0]);
 
             for (int i = 0; i < verticesCount; i++)
