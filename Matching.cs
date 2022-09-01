@@ -8,8 +8,8 @@ namespace Blossom_Algorithm
 {
     class Matching
     {
-        List<Edge> edges;
-        HashSet<Edge> edgeSet;
+        public List<Edge> edges { get; private set; }
+        public HashSet<Edge> edgeSet { get; private set; }
 
         public Matching()
         {
@@ -28,55 +28,80 @@ namespace Blossom_Algorithm
             edgeSet.Add(edge);
         }
 
-        public static bool EdgesHaveNoCommonVertex(Edge one, Edge two) //TODO test
+        public static bool EdgesHaveNoCommonVertex(Edge one, Edge two) 
         {
             if (one.u == two.u || one.u == two.v || one.v == two.u || one.v == two.v) return false;
             return true;
         }
-        public bool MatchingIsValid() //TODO
+        public bool MatchingIsValid() 
         {
-            bool matchingIsValid = true;
+
+
+
+            if (edges.Count != edges.Distinct().Count()) return false; //Has Duplicates
 
             foreach (Edge edge in edges)
             {
                 foreach (Edge edgeI in edges)
                 {
-                    if (edge != edgeI && !EdgesHaveNoCommonVertex(edge, edgeI)) matchingIsValid = false;
+                    if (edge != edgeI && !EdgesHaveNoCommonVertex(edge, edgeI))  return false;
                 }
 
             }
 
-            return matchingIsValid;
+            return true;
         }
 
-        public bool PathIsAugmenting(List<Edge> path) //TODO write tests with assert - FINISH
+        public bool PathIsAugmenting(List<Edge> path)
         {
-            bool isAugmenting = true;
+
+            if (path.Count != path.Distinct().Count()) return false; //Has Duplicates
+
+            //XX Problem s tim, ze netestuji, jestli koncove vrcholy cesty jsou volne?
+
 
             //see definition of augmenting path if this function is not clear
             for (int i = 1; i < path.Count; i += 2)
             {
-                if (!edgeSet.Contains(path[i])) isAugmenting = false;
+                if (!edgeSet.Contains(path[i])) return false;
             }
 
             for (int j = 0; j < path.Count; j += 2)
             {
-                if (edgeSet.Contains(path[j])) isAugmenting = false;
+                if (edgeSet.Contains(path[j])) return false;
             }
-            return isAugmenting;
+            return true;
 
 
 
         }
     
-        public void FindAugmentingPath(Graph g)
+        public List<Edge> FindAugmentingPath(Graph g)
         {
+            return null;
             //TODO
         }
 
-        public void ImproveWithAugmentingPath(Graph g)
+        public void ImproveWithAugmentingPath(List<Edge> augmentingPath)
         {
-            //TODO
+            if (!this.PathIsAugmenting(augmentingPath))
+            {
+                throw new Exception("Error! Path is not Augmenting.");
+            }
+
+            for (int i = 1; i < augmentingPath.Count; i += 2)
+            {
+                edgeSet.Remove(augmentingPath[i]);
+                edges.Remove(augmentingPath[i]);
+            }
+
+            for (int j = 0; j < augmentingPath.Count; j += 2)
+            {
+                edges.Add(augmentingPath[j]);
+                edgeSet.Add(augmentingPath[j]);
+            }
+
+            if (!this.MatchingIsValid()) throw new Exception("Error: Matching is not valid!");
         }
     }
 

@@ -29,7 +29,17 @@ namespace Blossom_Algorithm
 
         }
 
-       
+        public Graph(List<Node> nodes)
+        {
+            this.name = null;
+            this.nodes = new List<Node>();
+            foreach (Node node in nodes) this.nodes.Add(node);
+
+            this.edges = new List<Edge>();
+
+        }
+
+
 
         public Edge ParseEdge(string edgeString)
         {
@@ -105,6 +115,54 @@ namespace Blossom_Algorithm
             edges.Clear();
         }
 
+        public Graph ContractBlossom(List<Edge> Blossom) //TODO - TEST THIS
+        {
+            Graph G_contracted = new Graph("Contracted");
+            G_contracted.edges = this.edges;
+            G_contracted.nodes = this.nodes;
+
+
+            HashSet<Node> NodesInBlossom = new HashSet<Node>();
+            
+
+            foreach (Edge edge in Blossom)
+            {
+                NodesInBlossom.Add(edge.u);
+                NodesInBlossom.Add(edge.v);
+            }
+            
+            foreach(Edge edge in edges)
+            {
+                if (NodesInBlossom.Contains(edge.u) && NodesInBlossom.Contains(edge.v)) G_contracted.edges.Remove(edge);
+            }
+
+            Node representant = new Node(-1);
+            G_contracted.nodes.Add(representant);
+
+            foreach (Edge edge in G_contracted.edges)
+            {
+                if (NodesInBlossom.Contains(edge.u)){
+                    G_contracted.edges.Add(new Edge(representant, edge.v));
+                    G_contracted.edges.Remove(edge);
+                }
+                else if (NodesInBlossom.Contains(edge.v))
+                {
+                    G_contracted.edges.Add(new Edge(edge.u, representant));
+                    G_contracted.edges.Remove(edge);
+                }
+
+                List<Node> NodesInBlossomList = NodesInBlossom.ToList();
+                foreach (Node node in NodesInBlossomList) G_contracted.nodes.Remove(node);
+
+
+            }
+            return null;
+        }
+
+        public List<Edge> LiftBlossom(List<Edge> PathInG2)
+        {
+            return null; //TODO
+        }
        
        
 
