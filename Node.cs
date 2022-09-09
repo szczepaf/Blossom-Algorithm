@@ -33,12 +33,12 @@ namespace Blossom_Algorithm
             }
             return this.id.ToString() + ": " + ngbhrs;
         }
-        public Node FindParent(Node node)
+        public static Node getParent(Node node)
         {
             if (node.successor == node) return node; //We have reached the top of the tree
             if (node.successor == null) throw new Exception
                     ("Node " + node.id.ToString() + "does not have a successor.");
-            else return FindParent(node.successor);
+            else return getParent(node.successor);
         }
 
 

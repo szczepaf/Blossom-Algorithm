@@ -18,17 +18,17 @@ namespace Blossom_Algorithm
         static Node six = new Node(6);
 
 
-        static Edge a = new Edge(one, two);
-        static Edge b = new Edge(three, four);
-        static Edge c = new Edge(three, four);
-        static Edge d = new Edge(one, three);
+        static Edge a = new Edge(one, two, 1);
+        static Edge b = new Edge(three, four, 2);
+        static Edge c = new Edge(three, four, 3);
+        static Edge d = new Edge(one, three, 4);
 
-        static Edge first = new Edge(one, two);
-        static Edge second = new Edge(two, three);
-        static Edge third = new Edge(three, four);
-        static Edge fourth = new Edge(four, five);
-        static Edge fifth = new Edge(five, six);
-        static Edge sixth = new Edge(six, one);
+        static Edge first = new Edge(one, two, 5);
+        static Edge second = new Edge(two, three, 6);
+        static Edge third = new Edge(three, four, 7);
+        static Edge fourth = new Edge(four, five, 8);
+        static Edge fifth = new Edge(five, six, 9);
+        static Edge sixth = new Edge(six, one, 10);
 
         static Matching validMatching = new Matching(new List<Edge>() { a, b });
         static Matching badMatching = new Matching(new List<Edge>() { c, b });
@@ -157,6 +157,139 @@ namespace Blossom_Algorithm
 
             if (possibleAugPath.edges.Count() == 3) Console.WriteLine("And it does not contain any wrong edges. The function works well.\n\n");
             else { Console.WriteLine("Something went wrong. Debug"); }
+        }
+            
+        public static void TestGraph_ContractBlossom()
+        {
+
+            string blossomGraph = System.IO.File.ReadAllText(@"TestData\Blossom.txt");
+            Graph graph = new Graph("testing Graph");
+            graph.ParseGraph(blossomGraph);
+
+            List<Edge> blossom = new List<Edge>() { graph.edges[4], graph.edges[5], graph.edges[6], graph.edges[7], graph.edges[8]};
+
+
+            Graph Contracted = graph.contractBlossom(blossom);
+            Console.WriteLine(Contracted.ToString());
+
+
+           
+
+
+
+
+
+
+        }
+
+        public static void TestGraph_DoubleBlossom()
+        {
+            string doubleBlossomGraph = System.IO.File.ReadAllText(@"TestData\DoubleBlossom.txt");
+            Graph graph = new Graph("testing Graph");
+            graph.ParseGraph(doubleBlossomGraph);
+            Console.WriteLine(graph.ToString());
+
+            List<Edge> blossom1 = new List<Edge>() { graph.edges[2], graph.edges[3], graph.edges[4] };
+
+
+            Graph Contracted1 = graph.contractBlossom(blossom1);
+            Console.WriteLine(Contracted1.ToString());
+            foreach (Edge edge in Contracted1.edges) Console.WriteLine(edge.u.ToString() + " x " + edge.v.ToString() + " edge id: " + edge.id); ;
+
+            List<Edge> blossom2 = new List<Edge>() { Contracted1.edges[1], Contracted1.edges[2], Contracted1.edges[3] };
+
+
+            Graph Contracted2 = Contracted1.contractBlossom(blossom2);
+            Console.WriteLine(Contracted2.ToString());
+
+
+        }
+
+
+
+        public static void Test_reconstructAugmentingPath()
+        {
+            string p5 = System.IO.File.ReadAllText(@"TestData\P5.txt");
+            Graph graph = new Graph("testing Graph");
+            graph.ParseGraph(p5);
+
+            Console.WriteLine(graph);
+            graph.nodes[0].successor = graph.nodes[0];
+            graph.nodes[1].successor = graph.nodes[0];
+            graph.nodes[2].successor = graph.nodes[1];
+            graph.nodes[3].successor = graph.nodes[4];
+            graph.nodes[4].successor = graph.nodes[4];
+
+            List<Edge> path = graph.reconstructAugmentingPath(graph.nodes[3], graph.nodes[2]);
+
+            foreach (Edge edge in path)
+            {
+                Console.WriteLine(edge.u.id.ToString() + edge.v.id.ToString());
+            } 
+
+
+
+
+
+
+
+        }
+
+        public static void Test_GetEvenPortionOfBlossom() //WORKS WELL
+        {
+            string k3 = System.IO.File.ReadAllText(@"TestData\K3.txt");
+            Graph graph = new Graph("testing Graph");
+            graph.ParseGraph(k3);
+            Console.WriteLine(graph.ToString());
+
+            List<Edge> blossom = graph.edges;
+            List<Edge> EvenPortion = graph.GetEvenPortionOfBlossom(graph.nodes[1], graph.nodes[0], blossom);
+            foreach(Edge edge in EvenPortion) { Console.WriteLine(edge.id.ToString()); }
+        }
+
+        public static void Test_ContractionOfMatching()
+        {
+            string blossom = System.IO.File.ReadAllText(@"TestData\Blossom.txt");
+            Graph graph = new Graph("testing Graph");
+            graph.ParseGraph(blossom);
+
+            List<Edge> Blossom = new List<Edge>() { graph.edges[4], graph.edges[5], graph.edges[6], graph.edges[7], graph.edges[8] };
+            Graph Contracted = graph.contractBlossom(Blossom);
+
+            Matching first = new Matching(new List<Edge>() { graph.edges[0], graph.edges[4], graph.edges[9], graph.edges[3]});
+            Matching second = first.contractMatchingOnBlossom(Blossom, Contracted, graph);
+
+            foreach(Edge edge in second.edges) Console.WriteLine(edge.id.ToString());
+        }
+
+        public static void Test_LiftingPathAllThreeCases()
+        {
+            string e6 = System.IO.File.ReadAllText(@"TestData\Blossom.txt");
+            Graph graph = new Graph("testing Graph");
+            graph.ParseGraph(e6);
+            Console.WriteLine(graph.ToString());
+
+
+            Matching matching = new Matching(new List<Edge>() { graph.edges[5] , graph.edges[8] });
+
+
+            List<Edge> blossom = new List<Edge>() { graph.edges[4], graph.edges[5], graph.edges[6], graph.edges[7], graph.edges[8] };
+            Graph Contracted = graph.contractBlossom(blossom);
+
+            List<Edge> path1 = new List<Edge>() { Contracted.edgeIDMapping[0], Contracted.edgeIDMapping[1], Contracted.edgeIDMapping[2] };
+            List<Edge> path3 = new List<Edge>() { Contracted.edgeIDMapping[0], Contracted.edgeIDMapping[1], Contracted.edgeIDMapping[2], Contracted.edgeIDMapping[3], Contracted.edgeIDMapping[9] };
+            List<Edge> path2 = new List<Edge>() { Contracted.edgeIDMapping[1], Contracted.edgeIDMapping[2], Contracted.edgeIDMapping[3] };
+
+            List<Edge> lifted = graph.LiftPath(path1, blossom, Contracted, matching);
+            List<Edge> lifted3 = graph.LiftPath(path3, blossom, Contracted, matching);
+            List<Edge> lifted2 = graph.LiftPath(path2, blossom, Contracted, matching);
+
+            Console.WriteLine("x\n\n\n");
+            foreach (Edge edge in lifted) Console.WriteLine(edge.ToString());
+            Console.WriteLine("x\n\n\n");
+            foreach (Edge edge in lifted2) Console.WriteLine(edge.ToString());
+            Console.WriteLine("x\n\n\n");
+            foreach (Edge edge in lifted3) Console.WriteLine(edge.ToString());
         }
     }
 
