@@ -243,7 +243,6 @@ namespace Blossom_Algorithm
 
             Node from, to;
 
-            Console.WriteLine("length: " + PathInG2.Count().ToString());
 
             if (PathInG2.Count() == 0) return resultingPath; //POTENTIAL SOURCE OF PROBLEMS DONT KNOW HOW THIS WORKS, with graph K3
             if (PathInG2.Count() == 1)
@@ -272,7 +271,6 @@ namespace Blossom_Algorithm
 
             if (!nodesInPath.Contains(blossomRepresentant)) {             //case one - just lift it
 
-                Console.WriteLine("case1");
                 foreach (Edge edge in PathInG2)
                 {
                     Edge currentEdge = this.edgeIDMapping[edge.id];
@@ -285,7 +283,6 @@ namespace Blossom_Algorithm
             {
                 
 
-                Console.WriteLine("Case2");
                 Node blossomStart, blossomEnd;
                 Edge rightEdge = this.edgeIDMapping[edgesFromTheRepresentant[0].id];
 
@@ -297,8 +294,6 @@ namespace Blossom_Algorithm
                 blossomEnd = m.GetBlossomBase(Blossom);
 
 
-                Console.WriteLine("base IS XXXXXXX" + m.GetBlossomBase(Blossom));
-                Console.WriteLine("blossom start is " + blossomStart.ToString());
 
                 List<Edge> blossomArc = this.GetEvenPortionOfBlossom(blossomStart, blossomEnd, Blossom);
                 foreach (Edge edge in PathInG2)
@@ -314,7 +309,6 @@ namespace Blossom_Algorithm
             }
             else //case three - is in the middle
             {
-                Console.WriteLine("case3");
                 m.GetBlossomBase(Blossom);
 
 
@@ -450,14 +444,7 @@ namespace Blossom_Algorithm
                 iterator = iterator.successor;
                 flower.Add(currentEdge);
             }
-            Console.WriteLine("This is the reconstructed Flower Bruv ");
             
-
-
-
-
-            foreach (Edge edge in flower) Console.WriteLine(edge.ToString());
-            Console.WriteLine("end of bruv. TRY TO MEND:");
 
             Dictionary<Edge, int> occurances = new Dictionary<Edge, int>();
             List<Edge> blossom = new List<Edge>();
@@ -475,7 +462,7 @@ namespace Blossom_Algorithm
             List<Edge> toDelete = new List<Edge>(); 
             foreach (Edge edge in flower)
             {
-                if (occurances[edge] > 1)toDelete.Add(edge);
+                if (occurances[edge] > 1) toDelete.Add(edge);
             }
 
 
@@ -509,31 +496,22 @@ namespace Blossom_Algorithm
             int length = 0;
             for (int i = 0; i < BlossomNodes.Count(); i++)
             {
-                //Console.WriteLine(iterator);
-                //Console.WriteLine(iterator % Blossom.Count());
-                //Console.WriteLine("xx\n\n");
-
-                Console.WriteLine("Blossom nodes len" + BlossomNodes.Count().ToString() + " iterator " + (iterator).ToString()); 
+               
                 if (BlossomNodes[iterator % BlossomNodes.Count()] == to && length % 2 == 0) return EvenPortion;
                 if (BlossomNodes[iterator % BlossomNodes.Count()] == to) break;
 
-                Console.WriteLine("iterator " + iterator.ToString() + "   map size" + this.edgeNodeMap.Count());
                 if (iterator == Blossom.Count()) iterator = 0;
                 //XXX
-                Console.WriteLine((iterator % Blossom.Count()).ToString() + "modulo" + " blossomNodes" + BlossomNodes.Count().ToString() + "size itself " + Blossom.Count().ToString());
 
-                Console.WriteLine(iterator.ToString() + " iterator. BLOSSOM NODES COUNT" + BlossomNodes.Count().ToString() + "\nBLOSOSM COUNT" + Blossom.Count().ToString());
-                Console.WriteLine((iterator%BlossomNodes.Count()).ToString() + " iterator modulo");
-                Console.WriteLine(((iterator + 1) % BlossomNodes.Count()).ToString() + " iterator + 1 modulo2");
-                foreach (Edge edge in Blossom) Console.WriteLine(edge.ToString() + "x");
 
                 if (this.edgeNodeMap.ContainsKey((BlossomNodes[iterator % Blossom.Count()], BlossomNodes[(iterator + 1) % Blossom.Count()])))
                 { //GET CORRRECTEDGE
 
                     Edge currentEdge = this.edgeNodeMap[(BlossomNodes[iterator % Blossom.Count()], BlossomNodes[(iterator + 1) % Blossom.Count()])];
-
                     EvenPortion.Add(currentEdge);
                 }
+                //XX
+                else { Console.WriteLine("MENDING TWOOOO"); }
 
                 iterator++;
                 

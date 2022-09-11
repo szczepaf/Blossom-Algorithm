@@ -58,13 +58,10 @@ namespace Blossom_Algorithm
             Random random = new Random();
             List<int> indices = Enumerable.Range(0, allPossibleEdges.Count()).OrderBy(x => random.Next()).Take(this.edgeCount).ToList();
 
-            Console.WriteLine("n of indices is " + indices.Count);
 
             for (int i = 0; i < indices.Count(); i++)
             {
-                Console.WriteLine(indices[i].ToString() + " lol");
                 final.Add(allPossibleEdges[indices[i]]);
-                Console.WriteLine("ooo");
             }
             using (StreamWriter writer = new StreamWriter("input.txt"))
             {

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Blossom_Algorithm
 {
+    
     class Matching
     {
+        
         public List<Edge> edges { get; private set; }
         public HashSet<Edge> edgeSet { get; private set; }
 
@@ -137,8 +139,7 @@ namespace Blossom_Algorithm
                                 if (parent1 != parent2)
                                 {
                                     List<Edge> path = g.reconstructAugmentingPath(x, neighbour);
-                                    Console.WriteLine("Found an augmenting path, its edges are");
-                                    foreach (Edge edge in path)Console.WriteLine(edge.ToString());
+                                    
                                     return path;
                                 }
                                 else
@@ -154,14 +155,12 @@ namespace Blossom_Algorithm
 
                                     List<Edge> path = contractedMatching.FindAugmentingPath(contractedGraph);
 
-                                    Console.WriteLine("Path in contracted:");
-                                    foreach (Edge e in path) Console.WriteLine(e.ToString());
+                                   
 
                                     
 
                                     List<Edge> liftedPath = g.LiftPath(path, blossom, contractedGraph, this); //MAYBE LIFT WITH FLOWER?
-                                    Console.WriteLine("Path in original:");
-                                    foreach (Edge e in liftedPath) Console.WriteLine(e.ToString());
+                                   
                                     return liftedPath;
                                 }
 
@@ -190,8 +189,7 @@ namespace Blossom_Algorithm
                                 {
 
                                     List<Edge> path = g.reconstructAugmentingPath(x, neighbour);
-                                    Console.WriteLine("Found an augmenting path, its edges are");
-                                    foreach (Edge edge in path) Console.WriteLine(edge.ToString());
+                                    
                                     return path;
                                 }
                                 else {
@@ -207,15 +205,12 @@ namespace Blossom_Algorithm
 
 
                                     
-                                    Console.WriteLine("Path in contracted:");
-                                    foreach (Edge e in path) Console.WriteLine(e.ToString());
+                                    
 
                                     List<Edge> liftedPath = g.LiftPath(path, blossom, contractedGraph, this); //MAYBE LIFT WITH FLOWER?
-                                    Console.WriteLine("Path in original:");
-                                    foreach (Edge e in liftedPath) Console.WriteLine(e.ToString());
+                                
                                     return liftedPath;
 
-                                    return liftedPath;
                                 }
                             }
                         }
@@ -300,7 +295,7 @@ namespace Blossom_Algorithm
                     if (edge != edgeI && !EdgesHaveNoCommonVertex(edge, edgeI))
                     {
                         toRemove.Add(edge);
-
+                        Console.WriteLine("MENDING");
 
                     }
                 }
@@ -350,9 +345,7 @@ namespace Blossom_Algorithm
                 }
             }
 
-            Console.WriteLine("BLOSSOM LENGTH = " + Blossom.Count().ToString());
             Node blossomBase = occurances.MinBy(kvp => kvp.Value).Key;
-            Console.WriteLine("Blossom base is vertex: " + blossomBase.ToString() + ", has " + occurances[blossomBase].ToString() + " occurances");
 
             return blossomBase;
 

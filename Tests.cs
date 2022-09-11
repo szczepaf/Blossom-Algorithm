@@ -284,11 +284,8 @@ namespace Blossom_Algorithm
             List<Edge> lifted3 = graph.LiftPath(path3, blossom, Contracted, matching);
             List<Edge> lifted2 = graph.LiftPath(path2, blossom, Contracted, matching);
 
-            Console.WriteLine("x\n\n\n");
             foreach (Edge edge in lifted) Console.WriteLine(edge.ToString());
-            Console.WriteLine("x\n\n\n");
             foreach (Edge edge in lifted2) Console.WriteLine(edge.ToString());
-            Console.WriteLine("x\n\n\n");
             foreach (Edge edge in lifted3) Console.WriteLine(edge.ToString());
         }
     }
