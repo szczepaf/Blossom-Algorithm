@@ -1,5 +1,5 @@
-#Edmonds Blossom Algorithm, Frantisek Szczepanik, MFF UK 2022
-##szczepanik@centrum.cz
+Edmonds Blossom Algorithm, Frantisek Szczepanik, MFF UK 2022
+szczepanik@centrum.cz
 
 This is the Edmonds Blossom Algorithm.
 It is used for computing maximal matching on general graphs (unlike flow algorithms which work only on bipartite graphs).
