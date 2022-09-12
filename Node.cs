@@ -9,17 +9,17 @@ namespace Blossom_Algorithm
     class Node
     {
         public int id;         //Will be useful when debugging. Starts from 0.
-                               //Regular vertices will have positive ids, contracted vertices will have negative ids;
+                               //Regular vertices will have positive ids, contracted vertices will have negative ids.
         public int height;
-        public Node? successor;
+        public Node? successor; //Successor in the tree structure of the matching. Roots have themselves as successors.
         public List<Node> neigbours;
 
         
         public Node(int id)
         {
-            height = -1;
-            successor = null;
-            neigbours = new List<Node>();
+            this.height = -1;
+            this.successor = null;
+            this.neigbours = new List<Node>();
             this.id = id;
 
         }
@@ -33,12 +33,12 @@ namespace Blossom_Algorithm
             }
             return this.id.ToString() + ": " + ngbhrs;
         }
-        public Node FindParent(Node node)
+        public static Node getParent(Node node)
         {
             if (node.successor == node) return node; //We have reached the top of the tree
             if (node.successor == null) throw new Exception
                     ("Node " + node.id.ToString() + "does not have a successor.");
-            else return FindParent(node.successor);
+            else return getParent(node.successor);
         }
 
 
