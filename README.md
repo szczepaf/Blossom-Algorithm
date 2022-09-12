@@ -6,6 +6,7 @@ It is used for computing maximal matching on general graphs (unlike flow algorit
 More about Maximal Matching and Blossom Algorithm: https://en.wikipedia.org/wiki/Blossom_algorithm
 
 
+
 USAGE:
 
 Run main.bat from this folder. Firstly, the main C# code that computes the matching itself runs, it stores the results in a text file.
