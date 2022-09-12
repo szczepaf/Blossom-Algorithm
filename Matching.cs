@@ -64,7 +64,7 @@ namespace Blossom_Algorithm
 
             if (path.Count != path.Distinct().Count()) return false; //Has Duplicates
 
-            //XX Problem s tim, ze netestuji, jestli koncove vrcholy cesty jsou volne?
+            //Problem s tim, ze netestuji, jestli koncove vrcholy cesty jsou volne?
 
 
             //see definition of augmenting path if this function is not clear
@@ -159,7 +159,7 @@ namespace Blossom_Algorithm
 
                                     
 
-                                    List<Edge> liftedPath = g.LiftPath(path, blossom, contractedGraph, this); //MAYBE LIFT WITH FLOWER?
+                                    List<Edge> liftedPath = g.LiftPath(path, blossom, contractedGraph, this);
                                    
                                     return liftedPath;
                                 }
@@ -196,7 +196,6 @@ namespace Blossom_Algorithm
 
                                     (List<Edge> flower, List<Edge> blossom) = g.reconstructBlossom(x, neighbour);
 
-                                    //XX
                                     Graph contractedGraph = g.contractBlossom(flower);
                                     Matching contractedMatching = this.contractMatchingOnBlossom(flower, contractedGraph, g);
 
@@ -221,21 +220,12 @@ namespace Blossom_Algorithm
 
 
 
-            Console.WriteLine("M is the biggest");
+            Console.WriteLine("Found the biggest Matching.");
             return new List<Edge>();
         }
 
-        public List<Edge> FindAugmentingPath2(Graph g)
-        {
+      
 
-
-            //INIT
-            
-            //END OF INIT
-
-
-            return new List<Edge>();
-        }
 
 
         public Matching ImproveWithAugmentingPath(List<Edge> augmentingPath)
@@ -260,7 +250,7 @@ namespace Blossom_Algorithm
             return this;
         }
 
-        public Matching ImproveWithAugmentingPathExperimental(List<Edge> augmentingPath)
+        public Matching ImproveWithAugmentingPath2(List<Edge> augmentingPath)
         {
             List<Edge> toDelete = new List<Edge>();
             List<Edge> toAdd = new List<Edge>();
@@ -282,10 +272,10 @@ namespace Blossom_Algorithm
                 edges.Add(edge);
             }
 
-            this.RepairMatching();
+            this.addMatching();
             return this;
         }
-        public void RepairMatching()
+        public void addMatching()
         {
             HashSet<Edge> toRemove = new HashSet<Edge>();
             foreach (Edge edge in edges)
@@ -295,7 +285,6 @@ namespace Blossom_Algorithm
                     if (edge != edgeI && !EdgesHaveNoCommonVertex(edge, edgeI))
                     {
                         toRemove.Add(edge);
-                        Console.WriteLine("MENDING");
 
                     }
                 }
@@ -308,7 +297,7 @@ namespace Blossom_Algorithm
                 this.edges.Remove(edge);
             }
         }
-        public Matching contractMatchingOnBlossom(List<Edge> blossom, Graph Contracted, Graph Original) //TEST
+        public Matching contractMatchingOnBlossom(List<Edge> blossom, Graph Contracted, Graph Original) 
         {
             Matching contractedMatching = new Matching();
             foreach (Edge edge in this.edges)

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlossomAlgorithmPythonPart", "BlossomAlgorithmPythonPart.pyproj", "{F21BCB4E-9543-43BE-8A48-41A89B7E5F18}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlossomResults", "BlossomResults.pyproj", "{43BFB1A6-F9F6-40E3-AE34-111A866A089B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +11,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F21BCB4E-9543-43BE-8A48-41A89B7E5F18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F21BCB4E-9543-43BE-8A48-41A89B7E5F18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43BFB1A6-F9F6-40E3-AE34-111A866A089B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43BFB1A6-F9F6-40E3-AE34-111A866A089B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {604CC632-5802-4962-B455-2D9BF42E7FDF}
+		SolutionGuid = {D5D5BA53-9EC9-4FF2-99EA-40589B2C6F0F}
 	EndGlobalSection
 EndGlobal

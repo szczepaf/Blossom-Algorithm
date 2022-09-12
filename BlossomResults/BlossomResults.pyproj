@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>f21bcb4e-9543-43be-8a48-41a89b7e5f18</ProjectGuid>
+    <ProjectGuid>43bfb1a6-f9f6-40e3-ae34-111a866a089b</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>BlossomAlgorithmPythonPart.py</StartupFile>
+    <StartupFile>BlossomResults.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>BlossomAlgorithmPythonPart</Name>
-    <RootNamespace>BlossomAlgorithmPythonPart</RootNamespace>
+    <Name>BlossomResults</Name>
+    <RootNamespace>BlossomResults</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BlossomAlgorithmPythonPart.py" />
+    <Compile Include="BlossomResults.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

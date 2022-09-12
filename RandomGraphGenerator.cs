@@ -15,9 +15,9 @@ namespace Blossom_Algorithm
 
         public void GetInput()
         {
-            Console.WriteLine("enter number of vertices");
+            Console.WriteLine("Enter number of vertices, this works well up to about 1000:");
             int nodeCountCandidate = int.Parse(Console.ReadLine());
-            Console.WriteLine("enter number of edges");
+            Console.WriteLine("Enter number of edges:");
             int edgeCountCandidate = int.Parse(Console.ReadLine());
 
             if (nodeCountCandidate < 0 || edgeCountCandidate < 0)
@@ -73,6 +73,23 @@ namespace Blossom_Algorithm
 
 
 
+        }
+        public string EncodeString(Edge edge)
+        {
+            string result = "<" + edge.u.id.ToString() + "," + edge.v.id.ToString() + ">";
+            return result;
+        }
+        public void EncodeResult(Matching matching, Graph graph)
+        {
+            using (StreamWriter writer = new StreamWriter("output.txt"))
+            {
+                foreach (Edge edge in graph.edges)
+                {
+                    if (matching.edgeSet.Contains(edge)) writer.WriteLine("m" + EncodeString(edge));
+                    else writer.WriteLine(EncodeString(edge));
+                }
+
+            }
         }
     }
 }

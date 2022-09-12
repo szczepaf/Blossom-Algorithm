@@ -49,36 +49,6 @@ namespace Blossom_Algorithm
 
 
 
-        public static void CheckIfParsingIsCorrect()
-        {
-            string k3 = System.IO.File.ReadAllText(@"TestData\K3.txt");
-            string k4 = System.IO.File.ReadAllText(@"TestData\K4.txt");
-            string k7 = System.IO.File.ReadAllText(@"TestData\K7.txt");
-            string k4_3 = System.IO.File.ReadAllText(@"TestData\K4-3.txt");
-            string emptyGraph = System.IO.File.ReadAllText(@"TestData\Empty6.txt");
-            string c5 = System.IO.File.ReadAllText(@"TestData\C5.txt");
-            string blossom = System.IO.File.ReadAllText(@"TestData\Blossom.txt");
-
-            Graph graph = new Graph("testing Graph");
-            graph.ParseGraph(emptyGraph);
-            Console.WriteLine(graph.ToString());
-            graph.Clear();
-
-            graph.ParseGraph(k7);
-            Console.WriteLine(graph.ToString());
-            graph.Clear();
-
-            graph.ParseGraph(blossom);
-            Console.WriteLine(graph.ToString());
-            graph.Clear();
-
-
-            graph.ParseGraph(c5);
-            Console.WriteLine(graph.ToString());
-            graph.Clear();
-
-
-        }
 
         public static void TestMatching_EdgesHaveNoCommonVertex()
         {
@@ -144,7 +114,7 @@ namespace Blossom_Algorithm
 
         public static void TestMatching_ImproveWithAugmentingPath()
         {
-
+            
             Console.WriteLine("Testing the function ImproveWithAugmentingPath:\n\n");
             possibleAugPath.ImproveWithAugmentingPath(new List<Edge>() { first, second,third,fourth,fifth});
 
@@ -161,6 +131,7 @@ namespace Blossom_Algorithm
             
         public static void TestGraph_ContractBlossom()
         {
+            Console.WriteLine("Testing the function Contract Blossom:\n\n");
 
             string blossomGraph = System.IO.File.ReadAllText(@"TestData\Blossom.txt");
             Graph graph = new Graph("testing Graph");
@@ -170,13 +141,8 @@ namespace Blossom_Algorithm
 
 
             Graph Contracted = graph.contractBlossom(blossom);
-            Console.WriteLine(Contracted.ToString());
-
-
-           
-
-
-
+            Console.WriteLine("Before: " + graph.ToString());
+            Console.WriteLine("After contraction: " + Contracted.ToString());
 
 
 
@@ -184,6 +150,8 @@ namespace Blossom_Algorithm
 
         public static void TestGraph_DoubleBlossom()
         {
+            Console.WriteLine("Testing the function Contract with blossom on a double blossom:\n\n");
+
             string doubleBlossomGraph = System.IO.File.ReadAllText(@"TestData\DoubleBlossom.txt");
             Graph graph = new Graph("testing Graph");
             graph.ParseGraph(doubleBlossomGraph);
@@ -209,6 +177,8 @@ namespace Blossom_Algorithm
 
         public static void Test_reconstructAugmentingPath()
         {
+            Console.WriteLine("Testing the function Reconstruct Augmenting Path:\n\n");
+
             string p5 = System.IO.File.ReadAllText(@"TestData\P5.txt");
             Graph graph = new Graph("testing Graph");
             graph.ParseGraph(p5);
@@ -222,6 +192,7 @@ namespace Blossom_Algorithm
 
             List<Edge> path = graph.reconstructAugmentingPath(graph.nodes[3], graph.nodes[2]);
 
+            Console.WriteLine("Iterating edges in the path: ");
             foreach (Edge edge in path)
             {
                 Console.WriteLine(edge.u.id.ToString() + edge.v.id.ToString());
@@ -237,6 +208,8 @@ namespace Blossom_Algorithm
 
         public static void Test_GetEvenPortionOfBlossom() //WORKS WELL
         {
+            Console.WriteLine("Testing the function GetEvenPortionOfBlossom:\n\n");
+
             string k3 = System.IO.File.ReadAllText(@"TestData\K3.txt");
             Graph graph = new Graph("testing Graph");
             graph.ParseGraph(k3);
@@ -249,6 +222,8 @@ namespace Blossom_Algorithm
 
         public static void Test_ContractionOfMatching()
         {
+            Console.WriteLine("Testing the function TestContractionOfMatching:\n\n");
+
             string blossom = System.IO.File.ReadAllText(@"TestData\Blossom.txt");
             Graph graph = new Graph("testing Graph");
             graph.ParseGraph(blossom);
@@ -259,34 +234,73 @@ namespace Blossom_Algorithm
             Matching first = new Matching(new List<Edge>() { graph.edges[0], graph.edges[4], graph.edges[9], graph.edges[3]});
             Matching second = first.contractMatchingOnBlossom(Blossom, Contracted, graph);
 
+            
             foreach(Edge edge in second.edges) Console.WriteLine(edge.id.ToString());
         }
 
         public static void Test_LiftingPathAllThreeCases()
         {
+            Console.WriteLine("Testing the function LiftPath - all three cases.:\n\n");
+
             string e6 = System.IO.File.ReadAllText(@"TestData\Blossom.txt");
             Graph graph = new Graph("testing Graph");
             graph.ParseGraph(e6);
             Console.WriteLine(graph.ToString());
 
 
+            Console.WriteLine("Original graph: " + graph.ToString());
             Matching matching = new Matching(new List<Edge>() { graph.edges[5] , graph.edges[8] });
 
 
             List<Edge> blossom = new List<Edge>() { graph.edges[4], graph.edges[5], graph.edges[6], graph.edges[7], graph.edges[8] };
             Graph Contracted = graph.contractBlossom(blossom);
+            Console.WriteLine("Contracted graph: " + Contracted.ToString());
+            Console.WriteLine("Original paths one, two, three");
+
 
             List<Edge> path1 = new List<Edge>() { Contracted.edgeIDMapping[0], Contracted.edgeIDMapping[1], Contracted.edgeIDMapping[2] };
             List<Edge> path3 = new List<Edge>() { Contracted.edgeIDMapping[0], Contracted.edgeIDMapping[1], Contracted.edgeIDMapping[2], Contracted.edgeIDMapping[3], Contracted.edgeIDMapping[9] };
             List<Edge> path2 = new List<Edge>() { Contracted.edgeIDMapping[1], Contracted.edgeIDMapping[2], Contracted.edgeIDMapping[3] };
+            
+            foreach (Edge edge in path1) Console.WriteLine(edge.ToString());
+            foreach (Edge edge in path2) Console.WriteLine(edge.ToString());
+            foreach (Edge edge in path3) Console.WriteLine(edge.ToString());
+
+
 
             List<Edge> lifted = graph.LiftPath(path1, blossom, Contracted, matching);
             List<Edge> lifted3 = graph.LiftPath(path3, blossom, Contracted, matching);
             List<Edge> lifted2 = graph.LiftPath(path2, blossom, Contracted, matching);
 
+
+            Console.WriteLine("Lifting paths one, two, and three: ");
             foreach (Edge edge in lifted) Console.WriteLine(edge.ToString());
             foreach (Edge edge in lifted2) Console.WriteLine(edge.ToString());
             foreach (Edge edge in lifted3) Console.WriteLine(edge.ToString());
+        }
+
+
+        public static void RunAllTests()
+        {
+            Console.WriteLine("Running all tests:");
+
+            TestMatching_EdgesHaveNoCommonVertex();
+            TestMatching_MatchingIsValid();
+            TestMatching_PathIsAugmenting();
+            TestMatching_ImproveWithAugmentingPath();
+            TestGraph_ContractBlossom();
+            TestGraph_DoubleBlossom();
+            Test_reconstructAugmentingPath();
+            Test_GetEvenPortionOfBlossom();
+            Test_ContractionOfMatching();
+            Test_LiftingPathAllThreeCases();
+
+
+            Console.WriteLine("All tests have been run. If there are no Errors, the functions most likely work well.");
+            Console.WriteLine("End of testing Module.");
+            Console.WriteLine();
+
+
         }
     }
 

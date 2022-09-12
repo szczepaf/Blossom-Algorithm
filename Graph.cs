@@ -244,7 +244,7 @@ namespace Blossom_Algorithm
             Node from, to;
 
 
-            if (PathInG2.Count() == 0) return resultingPath; //POTENTIAL SOURCE OF PROBLEMS DONT KNOW HOW THIS WORKS, with graph K3
+            if (PathInG2.Count() == 0) return resultingPath; 
             if (PathInG2.Count() == 1)
             {
                 from = PathInG2[0].u;
@@ -501,17 +501,16 @@ namespace Blossom_Algorithm
                 if (BlossomNodes[iterator % BlossomNodes.Count()] == to) break;
 
                 if (iterator == Blossom.Count()) iterator = 0;
-                //XXX
+                
 
 
                 if (this.edgeNodeMap.ContainsKey((BlossomNodes[iterator % Blossom.Count()], BlossomNodes[(iterator + 1) % Blossom.Count()])))
-                { //GET CORRRECTEDGE
+                {
 
                     Edge currentEdge = this.edgeNodeMap[(BlossomNodes[iterator % Blossom.Count()], BlossomNodes[(iterator + 1) % Blossom.Count()])];
                     EvenPortion.Add(currentEdge);
                 }
-                //XX
-                else { Console.WriteLine("MENDING TWOOOO"); }
+               
 
                 iterator++;
                 
@@ -531,6 +530,8 @@ namespace Blossom_Algorithm
                     Edge currentEdge = this.edgeNodeMap[(BlossomNodes[iterator], BlossomNodes[helper])];
                     EvenPortion.Add(currentEdge);
                 }
+               
+                
                 iterator--;
                 if (iterator == -1) iterator = Blossom.Count() - 1;
                 if (iterator == 0) helper = Blossom.Count() - 1;
