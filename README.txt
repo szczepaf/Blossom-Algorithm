@@ -23,7 +23,7 @@ If you want to overwrite for your custom input, the graphs are encoded like so:
 
 where edge is encoded like so: <node from, node to>
 Node indices are 0-based.
-An example of a grap is this:
+An example of a graph is this:
 3
 <0,1>
 <1,2>
