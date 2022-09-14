@@ -18,4 +18,18 @@ For example, the graphs from Blossom.txt and DoubleBlossom.txt are such graphs t
 7th choice is my own generator of random graphs. Unfortunately, there is a bug which I cannot solve in one of the cases of lifting the path and therefore sometimes the computation spirals into infinity.
 
 
+If you want to overwrite for your custom input, the graphs are encoded like so:
+[number of nodes]\n<edge1>\n<edge2>
+
+where edge is encoded like so: <node from, node to>
+Node indices are 0-based.
+An example of a grap is this:
+3
+<0,1>
+<1,2>
+
+
+
+If there are any issues, contact me at szczepanik@centrum.cz.
+
 
